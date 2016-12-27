@@ -1,0 +1,37 @@
+.botonMenu, .itemMenu   {
+    width: 230px;
+    height: 50px;     
+    display: block; 
+    line-height: 50px; 
+    text-align: center;
+    border-bottom:1px solid #b5b5b5;
+}
+
+.encabezado {
+    border: 1px solid #b5b5b5;
+    width: 230px;
+    text-align: center;
+}
+
+.botonMenu {
+    border: 1px solid #b5b5b5;
+    background-color:#F9F9F9; 
+}
+
+.botonMenu span {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.itemMenu {
+    background-color:#FFF; 
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.activo {
+    background-color: #777;
+}

@@ -1,0 +1,21 @@
+.botonMenu, .itemLista{
+    width: 150px;
+    height: 50px;     
+    display: block; 
+    line-height: 50px; 
+    text-align: center;
+    border-bottom:1px solid blue;
+}
+
+.botonMenu {
+    background-color:#F9F9F9; 
+}
+
+.itemLista {
+    background-color:#FFF; 
+}
+
+ul{
+    padding:0; 
+    margin:0
+}
