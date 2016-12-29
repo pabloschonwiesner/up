@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Observable } from 'rxjs/Observable';
 import { ProduccionModel, UsuariosModel } from './../../modeloDatos';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
@@ -13,13 +14,19 @@ import { filter } from 'rxjs/operator/filter';
 
 
 export class MenuUsuariosComponent extends MenuDesplegableComponent implements OnInit {
-  @Input('itemActivo') itemActivo: String;
+  @Input('usuarioActivo') itemActivo: String;
   @Input('usuarios') items: UsuariosModel[];
 
   prueba: boolean = false;
   
-  constructor(private usuariosService: UsuariosService) { 
+  constructor() { 
     super();
   }
+
+  seleccionarItem(elemento: number): void {
+    this.itemActivo = this.items.find(e => e.Codigo == elemento).Nombre;
+    this.mostrarOcultarMenu();
+  }
+
 }
 

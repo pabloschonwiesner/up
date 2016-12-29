@@ -6,7 +6,7 @@
         class="botonMenu"><strong>{{itemActivo}}</strong></div>
 <div *ngIf="mostrarMenu === true">
     <div    *ngFor="let item of items" 
-            (click)="seleccionarItem(item.id)" 
+            (click)="seleccionarItem(item.Codigo)" 
             class="itemMenu" 
             (mouseover)="colorEstiloActivoIn($event)" 
             (mouseout)="colorEstiloActivoOut($event)">{{item.Nombre}}</div>

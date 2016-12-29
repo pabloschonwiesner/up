@@ -43,13 +43,7 @@ export class MenuDesplegableComponent implements OnInit {
     this.mostrarMenu === false ? this.mostrarMenu = true : this.mostrarMenu = false;
   }
 
-  seleccionarItem(elemento: number): void {
-    for (let i of this.items){
-      i.seleccionado = false;
-    }
-    this.itemActivo = this.items[elemento];
-    this.mostrarOcultarMenu();
-  }
+  
 }
 
 

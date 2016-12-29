@@ -48,3 +48,11 @@ export interface UsuariosModel{
     IntentosFallidos: number,
     LoginBloqueados: boolean
 }
+
+export interface TurnosModel{
+    Codigo: number,
+    Descripcion: String,
+    CodigoAdicional: String,
+    InicioTurno: number,
+    FinTurno: number
+}

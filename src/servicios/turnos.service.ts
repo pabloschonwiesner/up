@@ -1,36 +1,23 @@
+import { Http } from '@angular/http';
+import { HttpToolsService } from './http-tools.service';
+import { Observable } from 'rxjs/Observable';
+import { TurnosModel } from './../modeloDatos';
 import { Injectable } from '@angular/core';
-import { ITurnos } from '../app/menu-turnos/menu-turnos.component';
+
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TurnosService {
-  turnos: ITurnos[];
-  constructor() {
-    this.turnos = [
-      {
-        id: 0,
-        descripcion: 'No Definido',
-        seleccionado: true
-      },{
-        id: 1,
-        descripcion: 'Mañana',
-        seleccionado: true
-      },{
-        id: 2,
-        descripcion: 'Tarde',
-        seleccionado: true
-      },{
-        id: 3,
-        descripcion: 'Noche',
-        seleccionado: true
-      }
-    ];
+
+urlBase: String = 'http://localhost:3030';
+ 
+  constructor(private http: Http, private httpToolService: HttpToolsService) {}
+
+  buscarTodosLosTurnos$(): Observable<TurnosModel[]>{
+    let opciones = this.httpToolService.configurarCabeceras();
+    return this.http
+            .get(`${this.urlBase}/turnos/turnos`, opciones)
+            .map(this.httpToolService.obtenerDatos)
   }
 
-  buscarTodosLosTurnos(): ITurnos[]{
-    return this.turnos;
-  }
-
-  buscarUnTurno(id: number): ITurnos{
-    return this.turnos.find((turno) => turno.id === id); // la arrow function busca el indice del array
-  }
 }

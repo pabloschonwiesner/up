@@ -1,8 +1,9 @@
+import { TurnosService } from './../servicios/turnos.service';
 import { UsuariosService } from './../servicios/usuarios.service';
 import { ProduccionService } from './../servicios/produccion.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { ProduccionModel, UsuariosModel } from './../modeloDatos';
+import { ProduccionModel, UsuariosModel, TurnosModel } from './../modeloDatos';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,13 @@ export class AppComponent implements OnInit {
   usuarioActivo: UsuariosModel;
   nombreUsuarioActivo: String;
 
-  constructor(private produccionService: ProduccionService, private usuariosService: UsuariosService){
+  turnos: TurnosModel[];
+  turnoActivo: TurnosModel;
+  nombreTurnoActivo: String;
+
+
+  constructor(private produccionService: ProduccionService, private usuariosService: UsuariosService,
+  private turnosService: TurnosService){
     
   };
 
@@ -30,6 +37,13 @@ export class AppComponent implements OnInit {
         this.usuarioActivo = user.find(u=>u.Codigo == this.produccion[0].CodigoUsuario);
         this.nombreUsuarioActivo = this.usuarioActivo.Nombre;
       });   
+
+      this.turnosService.buscarTodosLosTurnos$().subscribe(turno => {
+        this.turnos = turno;
+        this.turnoActivo = turno.find(t => t.Codigo == this.produccion[0].CodigoTurno);
+        this.nombreTurnoActivo = this.turnoActivo.Descripcion;
+      })
+
     });   
 
   }
