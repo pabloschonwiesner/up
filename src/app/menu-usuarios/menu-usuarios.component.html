@@ -1,9 +1,13 @@
 <div class="encabezado">USUARIOS</div>
-<div (click)="mostrarOcultarMenu()" id="botonMenu" (mouseover)="colorEstiloActivoIn($event)" (mouseout)="colorEstiloActivoOut($event)" class="botonMenu"><strong>{{itemActivo.Descripcion}}</strong></div>
+<div    (click)="mostrarOcultarMenu()" 
+        id="botonMenu" 
+        (mouseover)="colorEstiloActivoIn($event)" 
+        (mouseout)="colorEstiloActivoOut($event)" 
+        class="botonMenu"><strong>{{itemActivo}}</strong></div>
 <div *ngIf="mostrarMenu === true">
-    <div  *ngFor="let item of items" (click)="seleccionarItem(item.id)" class="itemMenu" 
-    (mouseover)="colorEstiloActivoIn($event)" (mouseout)="colorEstiloActivoOut($event)">{{item.Descripcion}}</div>
+    <div    *ngFor="let item of items" 
+            (click)="seleccionarItem(item.id)" 
+            class="itemMenu" 
+            (mouseover)="colorEstiloActivoIn($event)" 
+            (mouseout)="colorEstiloActivoOut($event)">{{item.Nombre}}</div>
 </div>
-
-
-<!--<div *ngFor="let p of produccion">{{p.CodigoUsuario}}</div>-->

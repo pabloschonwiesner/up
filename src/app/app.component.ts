@@ -13,19 +13,24 @@ import { ProduccionModel, UsuariosModel } from './../modeloDatos';
 export class AppComponent implements OnInit {
 
   produccion: ProduccionModel;
-  produccion$: Observable<ProduccionModel>;
   usuarios: UsuariosModel[];
+  usuarioActivo: UsuariosModel;
+  nombreUsuarioActivo: String;
 
-  constructor(private produccionService: ProduccionService, private usuariosService: UsuariosService){};
+  constructor(private produccionService: ProduccionService, private usuariosService: UsuariosService){
+    
+  };
 
   ngOnInit(){
     this.produccionService.getProduccion$().subscribe(prod => {
-      this.produccion = prod;
-      this.produccion$ = new Observable();
+      this.produccion = prod;   
+
+      this.usuariosService.buscarTodosLosUsuariosOperadores$().subscribe(user => {
+        this.usuarios = user;
+        this.usuarioActivo = user.find(u=>u.Codigo == this.produccion[0].CodigoUsuario);
+        this.nombreUsuarioActivo = this.usuarioActivo.Nombre;
+      });   
     });   
 
-    this.usuariosService.buscarTodosLosUsuariosOperadores$().subscribe(user => {
-      this.usuarios = user;
-    }); 
   }
 }

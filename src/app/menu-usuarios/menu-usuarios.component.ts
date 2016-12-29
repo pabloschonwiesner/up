@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { ProduccionModel, UsuariosModel } from './../../modeloDatos';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MenuDesplegableComponent } from './../menu-desplegable/menu-desplegable.component';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { filter } from 'rxjs/operator/filter';
@@ -10,23 +10,16 @@ import { filter } from 'rxjs/operator/filter';
   templateUrl: './menu-usuarios.component.html',
   styleUrls: ['./menu-usuarios.component.css']
 })
+
+
 export class MenuUsuariosComponent extends MenuDesplegableComponent implements OnInit {
-  @Input('produccion') produccion: ProduccionModel; 
+  @Input('itemActivo') itemActivo: String;
   @Input('usuarios') items: UsuariosModel[];
 
-  itemActivo: UsuariosModel;
+  prueba: boolean = false;
   
   constructor(private usuariosService: UsuariosService) { 
     super();
   }
-
-  ngOnInit() { 
-    this.usuariosService.buscarTodosLosUsuariosOperadores$().subscribe(
-      item => {
-        this.items = item;
-        this.itemActivo = this.items.find(user => user.Codigo == this.produccion.CodigoUsuario);
-      }
-    );    
-  }  
 }
 
