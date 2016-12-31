@@ -1,6 +1,7 @@
+import { RecursosModel } from './../../modeloDatos';
 import { RecursosService } from './../../servicios/recursos.service';
 import { MenuDesplegableComponent } from './../menu-desplegable/menu-desplegable.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -10,25 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuRecursosComponent extends MenuDesplegableComponent implements OnInit {
 
-  items: IRecursos[];
+  @Input('recursoActivo') itemActivo: String;
+  @Input('recursos') items: RecursosModel[];
 
-  constructor(private recursosService: RecursosService) {
+  constructor() {
     super();
   }
 
   ngOnInit() {
-    this.items = this.recursosService.buscarTodosLosRecursosPorPC();
-    super.ngOnInit();
+  }
+
+  seleccionarItem(cs: number, cr: number): void {
+    this.itemActivo = this.items.find(r => r.CodigoSolapa == cs && r.CodigoRenglon == cr ).Descripcion;
+    this.mostrarOcultarMenu();
   }
 
 }
-
-export interface IRecursos{
-    id: number;
-    codigoSolapa: number;
-    codigoRenglon: number;
-    descripcion: string;
-    adquisidor: boolean;
-    nombrePC: string;
-    seleccionado: boolean;
-  }

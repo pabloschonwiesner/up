@@ -1,50 +1,20 @@
-import { IRecursos } from './../app/menu-recursos/menu-recursos.component';
+import { HttpToolsService } from './http-tools.service';
+import { Observable } from 'rxjs/Observable';
+import { RecursosModel } from './../modeloDatos';
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class RecursosService {
+  private urlBase: String = 'http://localhost:3030';
 
-  recursos: IRecursos[];
+  constructor(private http: Http, private httpToolsService: HttpToolsService) {}
 
-  constructor() {
-    this.recursos = [
-      {
-        id: 0,
-        codigoSolapa: 0,
-        codigoRenglon: 1,
-        descripcion: 'Maquina 1',
-        adquisidor: false,
-        nombrePC: 'notebookpablo',
-        seleccionado: true
-      },{
-        id: 1,
-        codigoSolapa: 0,
-        codigoRenglon: 2,
-        descripcion: 'Maquina 2',
-        adquisidor: false,
-        nombrePC: 'notebookpablo',
-        seleccionado: false
-      },{
-        id: 2,
-        codigoSolapa: 0,
-        codigoRenglon: 3,
-        descripcion: 'Maquina 3',
-        adquisidor: false,
-        nombrePC: '',
-        seleccionado: false
-      },{
-        id: 3,
-        codigoSolapa: 0,
-        codigoRenglon: 4,
-        descripcion: 'Maquina 4',
-        adquisidor: false,
-        nombrePC: '',
-        seleccionado: false
-      },
-    ]
-   }
-
-  buscarTodosLosRecursosPorPC(): IRecursos[] {
-    return this.recursos.filter((recurso) => recurso.nombrePC === 'notebookpablo' );
+  buscarTodosLosRecursosPorPC$(): Observable<RecursosModel[]> {
+    let options = this.httpToolsService.configurarCabeceras();
+    return this.http
+            .get(`${this.urlBase}/recursos/recursos/0/2`, options)
+            .map(this.httpToolsService.obtenerDatos)
   }
 }

@@ -1,3 +1,4 @@
+import { TableroService } from './../servicios/tablero.service';
 import { ProduccionService } from './../servicios/produccion.service';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { HttpToolsService } from './../servicios/http-tools.service';
@@ -32,7 +33,7 @@ import { TablaDatosComponent } from './tabla-datos/tabla-datos.component';
     FormsModule,
     HttpModule
   ],
-  providers: [TurnosService, UsuariosService, RecursosService, HttpToolsService, ProduccionService],
+  providers: [TurnosService, UsuariosService, RecursosService, HttpToolsService, ProduccionService, TableroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
