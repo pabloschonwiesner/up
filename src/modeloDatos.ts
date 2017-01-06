@@ -170,7 +170,7 @@ export interface TableroModel{
     Codigo: number,
     CodigoGrupo: number,
     SubId: String,
-    Id: String,
+    ID: String,
     GrupoId: String,
     CodigoProceso: String,
     CodigoProducto: String,
@@ -259,4 +259,17 @@ export interface TableroModel{
     UltimoProceso: boolean,
     CantidadAjustes: number,
     DescargadoAramis: boolean
+}
+
+export interface RecursosCamposModel{
+    CodigoRenglon: number,
+    CodigoSolapa: number,
+    Orden: number,
+    NombreCampo: String,
+    Formato: String,
+    AnchoColumna: number,
+    Descripcion: String,
+    TipoDato: number,
+    Visible: boolean,
+    TamanoFuente: number
 }

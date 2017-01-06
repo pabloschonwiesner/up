@@ -1,3 +1,5 @@
+import { ConTerminalService } from './../servicios/con-terminal.service';
+import { RecursosCamposService } from './../servicios/recursos-campos.service';
 import { TableroService } from './../servicios/tablero.service';
 import { ProduccionService } from './../servicios/produccion.service';
 import { ProduccionComponent } from './produccion/produccion.component';
@@ -33,7 +35,8 @@ import { TablaDatosComponent } from './tabla-datos/tabla-datos.component';
     FormsModule,
     HttpModule
   ],
-  providers: [TurnosService, UsuariosService, RecursosService, HttpToolsService, ProduccionService, TableroService],
+  providers: [TurnosService, UsuariosService, RecursosService, HttpToolsService, ProduccionService, 
+              TableroService, RecursosCamposService, ConTerminalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

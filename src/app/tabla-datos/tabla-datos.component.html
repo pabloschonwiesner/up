@@ -1,3 +1,6 @@
-<p>
-  tabla-datos works!
-</p>
+<table>
+  <th *ngFor="let c of cabezas">{{c}}</th>
+  <tr *ngFor="let t of conTerminal">
+    <td *ngFor="let n of nombreCampos; let i of index">{{t[i]}}</td>
+  </tr>
+</table>
